@@ -1,4 +1,4 @@
-import { Cities } from "../assets/cities";
+import { Cities } from "../constants/cities";
 
 export const randomizeCities = (count: number) => {
   const res = [];

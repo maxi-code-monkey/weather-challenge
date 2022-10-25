@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# Flow Weather-App Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Node.js
 
-## Available Scripts
+Since this project runs in a Node environment, it is best to install the [nvm](https://github.com/nvm-sh/nvm#installation-and-update) package manager. nvm allows you to easily manage and run different versions of Node on your system.
 
-In the project directory, you can run:
+#### How to install nvm?
 
-### `npm start`
+You can find the different methods for installing it [here](https://github.com/nvm-sh/nvm#installation-and-update), but the easiest way is to install it using `curl`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+or Wget:
 
-### `npm test`
+```
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To verify that nvm has been installed, run:
 
-### `npm run build`
+```
+command -v nvm
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+which should output 'nvm' if the installation was successful. Please note that which nvm will not work, since nvm is a sourced shell function, not an executable binary
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+On Linux, after running the install script, if you get nvm: command not found or see no feedback from your terminal after you type:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+command -v nvm
+```
 
-### `npm run eject`
+simply close your current terminal, open a new terminal, and try verifying again.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### What version of Node do I need?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Any version gets the job done for this particular challenge. No particular version was used for the setup.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Configuration
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Once you have all of the project's needed software and packages, it is time to set up the project's environment variables, which you will do within the `.env` file.
 
-## Learn More
+The simplest approach would be to duplicate the [`.env.example`](.env.example) file in the root of the project and rename the copied file to `.env`. Replace the `*` with the actual values.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Run
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Running the project
+
+All of the project's dependencies will need to be installed locally on your machine before you can successfully run the project. If your in the root of the project then run `npm install` which npm will then look at the `package.json` and install all of the tracked packages on your machine.
+
+Once the packages are installed successfully you can than run the project by using the `npm run start` command. This will run the app in development mode.
+
+### Verifying your project is running
+
+You can verify that the project is running by opening your browser and hitting http://localhost:3000
+
+# Test
+
+To run a test manually, you are able to achieve this by running the following scripts
+
+### Standard Test
+
+`npm run test`
+
+Since this is a challenge, only a couple of tests were setup in order to show just a simple example of each type (Snapshot, Testing a Component, Testing a Function).
+
+
+# General Information
+
+The base app structure was setup using `CRA`.
+`React-Query` was used for state management because of the multiple capabilities it provides such as caching, memoization, etc.
