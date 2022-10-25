@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useMemo, useState, useCallback } from "react";
+import "./App.css";
+import { withScopedCss } from './hoc/withScopedCss';
+import AppContext from "./context/AppContext";
+import ErrorBoundary from "./components/ErrorBoundary";
+import CustomAppBar from "./components/AppBar";
+import Main from "./layouts/main";
+import { randomizeCities } from "./utils/randomizeCities";
+import { City } from "./components/Select";
+import { SelectChangeEvent } from "@mui/material";
+import Spinner from "./components/Spinner";
 
-function App() {
+const App = () => {
+  const randomizedCities = useMemo(() => randomizeCities(5), []);
+  const [selectedCity, setSelectedCity] = useState<City>(randomizedCities[0]);
+
+  const handleCityChange = useCallback((event: SelectChangeEvent<number>) => {
+    const city = randomizedCities.find((city) => city.id ===event.target.value);
+    city && setSelectedCity(city);
+  }, [setSelectedCity]);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <CustomAppBar />
+          <Main
+            selectedCity={selectedCity}
+            setSelectedCity={handleCityChange}
+            allCities={randomizedCities}
+          />
+        </Suspense>
+      </ErrorBoundary>
+    </AppContext>
   );
-}
+};
 
-export default App;
+export default withScopedCss(App);
