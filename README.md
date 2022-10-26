@@ -58,16 +58,29 @@ You can verify that the project is running by opening your browser and hitting h
 
 # Test
 
-To run a test manually, you are able to achieve this by running the following scripts
+To run a test manually, you are able to achieve this by running the following scripts.
 
 ### Standard Test
 
 `npm run test`
 
-Since this is a challenge, only a couple of tests were setup in order to show just a simple example of each type (Snapshot, Testing a Component, Testing a Function).
-
-
-# General Information
+# General Information or Considerations
 
 The base app structure was setup using `CRA`.
-`React-Query` was used for state management because of the multiple capabilities it provides such as caching, memoization, etc.
+
+`React-Query` was used for state management because of the multiple capabilities it provides such as caching, memoization, etc. (On a real App it´s better to properly configure the time for the request/response to be considered stale improving the app´s general optimization).
+
+If a user session was to be stored and depending of the amount of information that needs to be stored, then, we would need to either move on to Redux (hopefully not) or Context API.
+
+From a `testing` perspective, only a couple of tests were created covering some of the more common examples such as:
+- Snapshot
+- Unit Testing
+- User Interaction
+- Testing a util or helper function
+
+From a `UX` perspective and since this is a Web App, I considered the best behavior to be the less instrusive one defaulting the initial weather shown to the first city on the selector and only then allow the user to enable (or not) the cellphone/desktop´s location.
+
+P.S: I noticed the Material UI Select works kinda funky with the Suspense/Fallback behavior, unfortunately, that´s going to be Tech Debt on this case.
+
+As for the `Test Cases`, there isn´t much to mention, the only ¨edge¨ case worth mentioning (that I can think of, clearly I´m no QA and my analysis could be biased) would be:
+- The user enabling the location and then selecting ¨No¨ when asked to share the location.
