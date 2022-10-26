@@ -15,7 +15,7 @@ const WeekForecast = ({ data }: Props) => {
     end: dayjs().add(5, 'day')
   }), []);
 
-  const dateRangeForecast = useMemo(() => formatForecastData(data?.list, dateRange), [data?.list]);
+  const dateRangeForecast = useMemo(() => formatForecastData(data?.list, dateRange), [data?.list, dateRange]);
   
   const ForecastList = useMemo(() => (
     dateRangeForecast.map((item, i) => <WeatherRow key={`${item.date}-${i}`} data={item} />)

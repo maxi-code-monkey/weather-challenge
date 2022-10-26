@@ -18,7 +18,7 @@ const App = () => {
   const handleCityChange = useCallback((event: SelectChangeEvent<number>) => {
     const city = randomizedCities.find((city) => city.id ===event.target.value);
     city && setSelectedCity(city);
-  }, [setSelectedCity]);
+  }, [setSelectedCity, randomizedCities]);
 
   const handleLocationChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setDisableCitySelector(event.target.checked);
