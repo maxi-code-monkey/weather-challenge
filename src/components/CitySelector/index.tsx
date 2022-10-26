@@ -21,15 +21,17 @@ interface Props {
   value: number;
   options: Array<City>;
   handleChange: (event: SelectChangeEvent<number>) => void;
+  disabled: boolean;
 };
 
-const CustomCitySelect = ({
+const CitySelector = ({
   id,
   label,
   labelId,
   value,
   options,
   handleChange,
+  disabled,
 }: Props) => {
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -40,6 +42,7 @@ const CustomCitySelect = ({
         value={value}
         label={label}
         onChange={handleChange}
+        disabled={disabled}
       >
         {
           options.map((opt) => <MenuItem key={`${opt.name}-${opt.id}`} value={opt.id}>{opt.name}</MenuItem>)
@@ -50,4 +53,4 @@ const CustomCitySelect = ({
   );
 };
 
-export default CustomCitySelect;
+export default CitySelector;

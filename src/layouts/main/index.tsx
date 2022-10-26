@@ -1,5 +1,5 @@
 import { Container, SelectChangeEvent } from '@mui/material';
-import { Unstable_Grid2 as Grid } from '@mui/material';
+import { Unstable_Grid2 as Grid, Stack } from '@mui/material';
 import React from 'react';
 
 import { useGetForecastWeather } from '../../hooks/useGetForecastWeather';
@@ -7,18 +7,23 @@ import Weather from '../current';
 import { useGetCurrentWeather } from '../../hooks/useGetCurrentWeather';
 import WeekForecast from '../forecast';
 import { styles } from './styles';
-import CustomCitySelect, { City } from '../../components/Select';
+import CitySelector, { City } from '../../components/CitySelector';
+import CustomSwitch from '../../components/CustomSwitch';
 
 interface Props {
   selectedCity: City;
-  setSelectedCity: (event: SelectChangeEvent<number>) => void;
+  handleCityChange: (event: SelectChangeEvent<number>) => void;
   allCities: Array<City>;
+  handleLocationChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  disableCitySelector: boolean;
 }
 
 const Main = ({
   selectedCity,
-  setSelectedCity,
+  handleCityChange,
   allCities,
+  handleLocationChange,
+  disableCitySelector,
 }: Props) => {
 
   if (!selectedCity) {
@@ -30,14 +35,18 @@ const Main = ({
 
   return (
     <Container sx={styles.mainContainer} maxWidth="xl">
-      <CustomCitySelect
-        id="city-select"
-        label="City"
-        labelId="city-select-label"
-        value={selectedCity?.id || 0}
-        options={allCities}
-        handleChange={setSelectedCity}
-      />
+      <Stack direction="row" spacing={1} alignItems="center">
+        <CitySelector
+          id="city-select"
+          label="City"
+          labelId="city-select-label"
+          value={selectedCity?.id || 0}
+          options={allCities}
+          handleChange={handleCityChange}
+          disabled={disableCitySelector}
+        />
+        <CustomSwitch handleChange={handleLocationChange} />
+      </Stack>
       <Grid container spacing={2} columns={16}>
         <Grid display="flex" direction="column" justifyContent="center" xs={16} md={6}>
           <Weather data={currentWeather} />
