@@ -42,7 +42,7 @@ Any version gets the job done for this particular challenge. No particular versi
 
 Once you have all of the project's needed software and packages, it is time to set up the project's environment variables, which you will do within the `.env` file.
 
-The simplest approach would be to duplicate the [`.env.example`](.env.example) file in the root of the project and rename the copied file to `.env`. Replace the `*` with the actual values.
+The simplest approach would be to duplicate the [`.ENV.example`](.ENV.example) file in the root of the project and rename the copied file to `.env`. Replace the `*` with the actual API KEY value.
 
 # Run
 
